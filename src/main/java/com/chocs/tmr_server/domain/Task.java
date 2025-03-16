@@ -1,4 +1,4 @@
-package com.chocs.spring_test.domain;
+package com.chocs.tmr_server.domain;
 
 import java.time.LocalDate;
 import java.util.Objects;

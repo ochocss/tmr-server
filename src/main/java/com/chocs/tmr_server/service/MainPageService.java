@@ -1,6 +1,6 @@
-package com.chocs.spring_test.service;
+package com.chocs.tmr_server.service;
 
-import com.chocs.spring_test.domain.Task;
+import com.chocs.tmr_server.domain.Task;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -40,5 +40,13 @@ public class MainPageService {
         }
 
         return tasks;
+    }
+
+    public void delete(int id) {
+        try {
+            conn.createStatement().executeUpdate("DELETE FROM Tasks WHERE ID_task = " + id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
