@@ -18,7 +18,7 @@ public class MainPageController {
         return mainPageService.get();
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") int id) {
         mainPageService.delete(id);
     }
