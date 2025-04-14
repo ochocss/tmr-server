@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class MainPageService {
-    Connection conn;
-    public MainPageService () {
+public class HomePageService {
+    protected Connection conn;
+    public HomePageService() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/task_manager", "java", "password");
@@ -40,6 +40,24 @@ public class MainPageService {
         }
 
         return tasks;
+    }
+
+    public void post(Task task) {
+
+    }
+
+    public void put(Task task) {
+        try {
+            conn.createStatement().executeUpdate("UPDATE Tasks SET " +
+                    ", ID_type=" + task.getTypeId() +
+                    ", ID_subject=" + task.getSubjectId() +
+                    ", Descript=" + task.getDescription() +
+                    ", TaskDate=" + task.getDate() +
+                    "WHERE ID_task=" + task.getId()
+            );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void delete(int id) {

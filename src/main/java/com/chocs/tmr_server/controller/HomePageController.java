@@ -1,7 +1,7 @@
 package com.chocs.tmr_server.controller;
 
 import com.chocs.tmr_server.domain.Task;
-import com.chocs.tmr_server.service.MainPageService;
+import com.chocs.tmr_server.service.HomePageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,17 +9,27 @@ import java.util.List;
 
 @RestController
 @RequestMapping
-public class MainPageController {
+public class HomePageController {
     @Autowired
-    MainPageService mainPageService;
+    HomePageService homePageService;
 
     @GetMapping("")
     public List<Task> get() {
-        return mainPageService.get();
+        return homePageService.get();
+    }
+
+    @PostMapping
+    public void post(@RequestBody Task task) {
+        homePageService.post(task);
+    }
+
+    @PutMapping
+    public void put(@RequestBody Task task) {
+        homePageService.put(task);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") int id) {
-        mainPageService.delete(id);
+        homePageService.delete(id);
     }
 }
