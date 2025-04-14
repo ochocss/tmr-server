@@ -1,7 +1,7 @@
-drop schema if exists tmr;
+drop schema if exists task_manager;
 
-create schema tmr;
-use tmr;
+create schema task_manager;
+use task_manager;
 
 create table Teachers (
 	ID_teacher int not null auto_increment primary key,
@@ -54,4 +54,4 @@ insert into Subjects (ID_teacher, Name) values
                                 (1, 'Software Engineering'), (1, 'Other');
 
 create user if not exists 'java'@'localhost' identified by 'password';
-grant all on tmr.* to 'java'@'localhost';
+grant all on task_manager.* to 'java'@'localhost';
