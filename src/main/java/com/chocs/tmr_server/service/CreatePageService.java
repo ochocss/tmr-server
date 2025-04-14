@@ -1,0 +1,39 @@
+package com.chocs.tmr_server.service;
+
+import org.springframework.stereotype.Service;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+@Service
+public class CreatePageService {
+    protected Connection conn;
+    public CreatePageService() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/task_manager", "java", "password");
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<String> get() {
+        List<String> subjects = new ArrayList<>();
+
+        try {
+            ResultSet r = Objects.requireNonNull(conn.createStatement().executeQuery("SELECT Nome FROM Subjects;"));
+            while (r.next()) {
+                subjects.add(r.getString("Nome"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return subjects;
+    }
+}
