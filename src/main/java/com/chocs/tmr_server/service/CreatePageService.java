@@ -27,9 +27,9 @@ public class CreatePageService {
         List<String> subjects = new ArrayList<>();
 
         try {
-            ResultSet r = Objects.requireNonNull(conn.createStatement().executeQuery("SELECT Nome FROM Subjects;"));
+            ResultSet r = Objects.requireNonNull(conn.createStatement().executeQuery("SELECT Name FROM Subjects;"));
             while (r.next()) {
-                subjects.add(r.getString("Nome"));
+                subjects.add(r.getString("Name"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
