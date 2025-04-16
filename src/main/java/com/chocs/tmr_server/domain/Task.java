@@ -58,6 +58,10 @@ public class Task {
         this.date = date;
     }
 
+    public String toSqlString() {
+        return "(" + typeId + ", " + subjectId + ", '" + description + "', '" + date + "')";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
