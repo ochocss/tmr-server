@@ -34,7 +34,7 @@ public class RootService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(subjects);
+        
         return subjects;
     }
 }
