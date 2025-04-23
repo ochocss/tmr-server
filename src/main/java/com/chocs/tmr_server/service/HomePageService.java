@@ -1,6 +1,8 @@
 package com.chocs.tmr_server.service;
 
 import com.chocs.tmr_server.domain.Task;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -53,18 +55,20 @@ public class HomePageService {
                     ", ID_subject=" + task.getSubjectId() +
                     ", Descript=" + task.getDescription() +
                     ", TaskDate=" + task.getDate() +
-                    "WHERE ID_task=" + task.getId()
+                    "WHERE ID_task=" + task.getId() + ";"
             );
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void delete(int id) {
+    public ResponseEntity<Void> delete(int id) {
         try {
             conn.createStatement().executeUpdate("DELETE FROM Tasks WHERE ID_task = " + id);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

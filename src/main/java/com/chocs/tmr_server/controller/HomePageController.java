@@ -3,6 +3,7 @@ package com.chocs.tmr_server.controller;
 import com.chocs.tmr_server.domain.Task;
 import com.chocs.tmr_server.service.HomePageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class HomePageController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") int id) {
-        homePageService.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable("id") int id) {
+        return homePageService.delete(id);
     }
 }
