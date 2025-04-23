@@ -16,8 +16,8 @@ public class CreatePageController {
     @PostMapping(value="/create", consumes={"application/json"})
     public ResponseEntity<Void> post(@RequestBody Task task) {
         if (createPageService.post(task)) {
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return new ResponseEntity<>(HttpStatus.CREATED);
         }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
