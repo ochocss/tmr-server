@@ -80,7 +80,7 @@ public class Task {
                 "id=" + id +
                 ", typeId=" + typeId +
                 ", subjectId=" + subjectId +
-                ", description='" + description + '\'' +
+                ", description=" + description +
                 ", date=" + date +
                 '}';
     }
