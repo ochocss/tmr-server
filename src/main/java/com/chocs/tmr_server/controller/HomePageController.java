@@ -19,16 +19,6 @@ public class HomePageController {
         return homePageService.get();
     }
 
-    @PostMapping
-    public void post(@RequestBody Task task) {
-        homePageService.post(task);
-    }
-
-    @PutMapping
-    public void put(@RequestBody Task task) {
-        homePageService.put(task);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") int id) {
         return homePageService.delete(id);

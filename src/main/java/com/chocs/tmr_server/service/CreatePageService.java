@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class CreatePageService {
@@ -21,7 +23,14 @@ public class CreatePageService {
 
     public boolean post(Task task) {
         try {
-            conn.createStatement().executeUpdate("INSERT INTO Tasks (ID_type, ID_subject, Descript, TaskDate) VALUES " + task.toSqlString() + ";");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Tasks (ID_type, ID_subject, Descript, TaskDate) VALUES (?, ?, ?, ?) ;");
+
+            pstmt.setString(1, String.valueOf(task.getTypeId()));
+            pstmt.setString(2, String.valueOf(task.getSubjectId()));
+            pstmt.setString(3, task.getDescription());
+            pstmt.setString(4, task.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+            pstmt.executeUpdate();
         } catch(SQLException e) {
             e.printStackTrace();
             return false;

@@ -44,24 +44,6 @@ public class HomePageService {
         return tasks;
     }
 
-    public void post(Task task) {
-
-    }
-
-    public void put(Task task) {
-        try {
-            conn.createStatement().executeUpdate("UPDATE Tasks SET " +
-                    ", ID_type=" + task.getTypeId() +
-                    ", ID_subject=" + task.getSubjectId() +
-                    ", Descript=" + task.getDescription() +
-                    ", TaskDate=" + task.getDate() +
-                    "WHERE ID_task=" + task.getId() + ";"
-            );
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public ResponseEntity<Void> delete(int id) {
         try {
             conn.createStatement().executeUpdate("DELETE FROM Tasks WHERE ID_task = " + id);
