@@ -3,22 +3,9 @@ drop schema if exists task_manager;
 create schema task_manager;
 use task_manager;
 
-create table Teachers (
-	ID_teacher int not null auto_increment primary key,
-    Name varchar (80) not null
-);
-
-create table Students (
-	ID_students int not null auto_increment primary key,
-    Name varchar (80) not null
-);
-
 create table Subjects (
 	ID_subject int not null auto_increment primary key,
-    ID_teacher int not null,
-    Name varchar (32) not null,
-    
-    foreign key (ID_teacher) references Teachers (ID_teacher)
+    Name varchar (32) not null
 );
 
 create table TaskTypes (
@@ -37,21 +24,19 @@ create table Tasks (
     foreign key (ID_subject) references Subjects (ID_subject)
 );
 
-create table TaskStatus (
-	ID_taskStatus int not null auto_increment primary key
-);
-
 insert into TaskTypes values
                           (1, 'Test'), (2, 'Homework'), (3, 'Others');
 
 -- Insert models
+insert into Subjects (Name) values
+                                ('Art'), ('Biology'), ('Chemistry'), ('Databases'), ('English'),
+                                ('Geography'), ('History'), ('Mathematics'), ('OOP'), ('Philosophy'),
+                                ('Physical Education'), ('Physics'), ('Portuguese'), ('Sociology'),
+                                ('Software Engineering'), ('Other');
 
-insert into Teachers (Name) values ('The Teacher');
-insert into Subjects (ID_teacher, Name) values
-                                (1, 'Art'), (1, 'Biology'), (1, 'Chemistry'), (1, 'Databases'), (1, 'English'),
-                                (1, 'Geography'), (1, 'History'), (1, 'Mathematics'), (1, 'OOP'), (1, 'Philosophy'),
-                                (1, 'Physical Education'), (1, 'Physics'), (1, 'Portuguese'), (1, 'Sociology'),
-                                (1, 'Software Engineering'), (1, 'Other');
+-- Insert templates
+insert into Tasks (ID_type, ID_subject, Descript, TaskDate) values 
+																(1, 1, 'Art Test', '2025-05-05'), (2, 2, 'Biology Homework', '2025-10-11'), (3, 10, 'Philosophy Project', '2025-06-20');
 
 create user if not exists 'java'@'localhost' identified by 'password';
 grant all on task_manager.* to 'java'@'localhost';
