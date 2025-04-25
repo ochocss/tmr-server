@@ -1,3 +1,5 @@
+-- This schema will be used when I reorganize the project structure. It will probably have a login system and taskstatus per user.
+
 drop schema if exists tmr;
 
 create schema tmr;
