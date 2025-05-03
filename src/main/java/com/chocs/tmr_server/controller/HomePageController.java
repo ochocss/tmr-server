@@ -14,12 +14,12 @@ public class HomePageController {
     @Autowired
     HomePageService homePageService;
 
-    @GetMapping("")
+    @GetMapping("/home")
     public List<Task> get() {
         return homePageService.get();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/home/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") int id) {
         return homePageService.delete(id);
     }
