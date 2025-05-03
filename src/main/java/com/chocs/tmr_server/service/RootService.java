@@ -1,6 +1,5 @@
 package com.chocs.tmr_server.service;
 
-import com.chocs.tmr_server.domain.Task;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
